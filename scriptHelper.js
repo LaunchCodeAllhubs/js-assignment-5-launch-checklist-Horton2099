@@ -40,7 +40,7 @@ function validateInput(testInput) {
 }
 
 function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
-    console.log(list.style.visibility);
+    
     let pilotStatus = document.getElementById("pilotStatus");
     let copilotStatus = document.getElementById("copilotStatus");
     let fuelStatus = document.getElementById("fuelStatus");
@@ -65,17 +65,18 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
     
    }else if(fuelNum < 10000) {
         pilotStatus.innerHTML = `Pilot ${pilot} is ready for launch`;
-        copilotStatus.innerHTML = `Pilot ${copilot} is ready for launch`;
+        copilotStatus.innerHTML = `Co-pilot ${copilot} is ready for launch`;
         list.style.visibility = 'visible';
-        fuelStatus.innerHTML = `${fuelLevel} liters is not enough fuel for the journey. `
-        launchStatus.innerHTML = `Shuttle not ready for launch`;
+        fuelStatus.innerHTML = `Fuel level too low for launch`
+        launchStatus.innerHTML = `Shuttle Not Ready for Launch`;
         launchStatus.style.color = '#C7254E'
     }else if(cargoNum > 10000) {
         pilotStatus.innerHTML = `Pilot ${pilot} is ready for launch`;
-        copilotStatus.innerHTML = `Pilot ${copilot} is ready for launch`;
+        copilotStatus.innerHTML = `Co-pilot ${copilot} is ready for launch`;
         list.style.visibility = 'visible';
-        cargoStatus.innerHTML = `${cargoLevel}kg is too much mass for the shuttle to take off.`;
-        launchStatus.innerHTML = `Shuttle not ready for launch`;
+        fuelStatus.innerHTML = `Fuel level high enough for launch`
+        cargoStatus.innerHTML = `Cargo mass too heavy for launch`;
+        launchStatus.innerHTML = `Shuttle Not Ready for Launch`;
         launchStatus.style.color = '#C7254E';
     }else {
         launchStatus.innerHTML = `Shuttle is ready for launch`;
