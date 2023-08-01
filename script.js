@@ -1,5 +1,11 @@
 // Write your JavaScript code here!
 
+// const { addDestinationInfo } = require("./scriptHelper");
+
+// const { pickPlanet } = require("./scriptHelper");
+
+
+
 // const { formSubmission, validateInput } = require("./scriptHelper");
 
 window.addEventListener("load", function(event) {
@@ -7,19 +13,25 @@ window.addEventListener("load", function(event) {
    let listedPlanets;
    // Set listedPlanetsResponse equal to the value returned by calling myFetch()
    let listedPlanetsResponse = myFetch();
+
    listedPlanetsResponse.then(function (result) {
+        
        listedPlanets = result;
        console.log(listedPlanets);
    }).then(function () {
+    console.log("hello");
        console.log(listedPlanets);
        // Below this comment call the appropriate helper functions to pick a planet fom the list of planets and add that information to your destination.
+       let randomPlanet = pickPlanet(listedPlanets);
+       addDestinationInfo(document, randomPlanet.name, randomPlanet.diameter, randomPlanet.star, randomPlanet.distance, randomPlanet.moons, randomPlanet.image);
+
    })
 
    
    const form = document.querySelector("form");
    const list = document.getElementById("faultyItems");
    list.style.visibility = 'hidden';
-   
+
    form.addEventListener("submit", function(event) {
 
     event.preventDefault();
@@ -36,24 +48,6 @@ window.addEventListener("load", function(event) {
     // console.log(typeof cargoLevel.value);
     formSubmission(document, list, pilot.value, copilot.value, fuelLevel.value, cargoLevel.value);
     
-    // if (fuelLevel < 10000) {
-    //         faultyItems.style.visibility = 'visible';
-    //         fuelStatus.innerHTML = `${fuelLevel} liters is not enough fuel for the journey. `
-    //         launchStatus.innerHTML = `Shuttle not ready for launch`;
-    //         launchStatus.style.color = '#C7254E'
-    //     } else if (cargoLevel > 10000) {
-    //         faultyItems.style.visibility = 'visible';
-    //         cargoStatus.innerHTML = `${cargoLevel}kg is too much mass for the shuttle to take off.`;
-    //         launchStatus.innerHTML = `Shuttle not ready for launch`;
-    //         launchStatus.style.color = '#C7254E';
-    //     } else {
-    //         launchStatus.innerHTML = `Shuttle is ready for launch`;
-    //         launchStatus.style.color = '#419F6A';
-    //     };
-    
-    
-
-
     } 
         
     

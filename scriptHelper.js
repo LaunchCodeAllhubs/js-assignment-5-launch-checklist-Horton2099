@@ -2,19 +2,19 @@
 ('isomorphic-fetch');
 
 function addDestinationInfo(document, name, diameter, star, distance, moons, imageUrl) {
-    // const missionTarget = document.getElementById("missionTarget");
+    const missionTarget = document.getElementById("missionTarget");
 
-    // missionTarget.innerHTML = `
-    // <h2>Mission Destination</h2>
-    //             <ol>
-    //                 <li>Name: ${name}</li>
-    //                 <li>Diameter: ${diameter}</li>
-    //                 <li>Star: ${star}</li>
-    //                 <li>Distance from Earth: ${distance}</li>
-    //                 <li>Number of Moons: ${moons}</li>
-    //             </ol>
-    //             <img src= "${imageUrl}">
-    // `
+    missionTarget.innerHTML = `
+    <h2>Mission Destination</h2>
+                <ol>
+                    <li>Name: ${name}</li>
+                    <li>Diameter: ${diameter}</li>
+                    <li>Star: ${star}</li>
+                    <li>Distance from Earth: ${distance}</li>
+                    <li>Number of Moons: ${moons}</li>
+                </ol>
+                <img src= "${imageUrl}">
+    `
    // Here is the HTML formatting for our mission target div.
    /*
                 <h2>Mission Destination</h2>
@@ -70,6 +70,7 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
         fuelStatus.innerHTML = `Fuel level too low for launch`
         launchStatus.innerHTML = `Shuttle Not Ready for Launch`;
         launchStatus.style.color = '#C7254E'
+        
     }else if(cargoNum > 10000) {
         pilotStatus.innerHTML = `Pilot ${pilot} is ready for launch`;
         copilotStatus.innerHTML = `Co-pilot ${copilot} is ready for launch`;
@@ -83,7 +84,7 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
         launchStatus.style.color = '#419F6A';
         list.style.visibility = 'visible';
         fuelStatus.innerHTML = `Fuel level high enough for launch`;
-        cargoStatus.innerHTML = `Cargo mass low enough for launch`
+        cargoStatus.innerHTML = `Cargo mass low enough for launch`;
         pilotStatus.innerHTML = `Pilot ${pilot} is ready for launch`;
         copilotStatus.innerHTML = `Co-pilot ${copilot} is ready for launch`;
 
@@ -95,15 +96,18 @@ async function myFetch() {
     let planetsReturned;
 
     planetsReturned = await fetch("https://handlers.education.launchcode.org/static/planets.json").then( function(response) {
-        response.json();
+        
+        return response.json();
+        
         });
-
+     
     return planetsReturned;
 }
 
 
 function pickPlanet(planets) {
-    const randomPlanet = Math.floor(Math.random() * planets.length);
+    const randomIndex = Math.floor(Math.random() * planets.length);
+    const randomPlanet = planets[randomIndex];
     return randomPlanet;
 }
 
